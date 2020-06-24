@@ -9,7 +9,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -27,7 +26,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var mCreateAccountListener: OnCompleteListener<AuthResult>
     private lateinit var mLoginListener: OnCompleteListener<AuthResult>
     private lateinit var mDataBaseReference: DatabaseReference
-    private lateinit var mFirebaseAnalytics: FirebaseAnalytics
 
     // アカウント作成時にフラグを立て、ログイン処理後に名前をFirebaseに保存する
     private var mIsCreateAccount = false
@@ -148,11 +146,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
-        val bundle= Bundle()
-
-
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle)
     }
 
     private fun createAccount(email: String, password: String) {
